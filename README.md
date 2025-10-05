@@ -1,24 +1,16 @@
 --[[
-
-
 --HOW TO JOIN YOURSELF WITH ANOTHER ACCOUNT ON THE SERVER:
-
 
 --Put this setclipboard at the end of the script below this one!!
 setclipboard(accessCode)
 
-
-
 --After you do that, run the script, it will copy the accessCode to clipboard, then use this small script below to join yourself ( add your accessCode first at local accessCode = "" )
-
-
 
 --TELEPORT TO URSELF SCRIPT
 local accesscode = "" -- paste your access code
 local placeid = game.PlaceId
 
 game.RobloxReplicatedStorage.ContactListIrisInviteTeleport:FireServer(placeid, "", accesscode)
-    
 ]]
 
 --PRIVATE SERVER CREATOR
@@ -29,70 +21,14 @@ local base64 = {}
 do
 	do
 		local T = {
-			0xd76aa478,
-			0xe8c7b756,
-			0x242070db,
-			0xc1bdceee,
-			0xf57c0faf,
-			0x4787c62a,
-			0xa8304613,
-			0xfd469501,
-			0x698098d8,
-			0x8b44f7af,
-			0xffff5bb1,
-			0x895cd7be,
-			0x6b901122,
-			0xfd987193,
-			0xa679438e,
-			0x49b40821,
-			0xf61e2562,
-			0xc040b340,
-			0x265e5a51,
-			0xe9b6c7aa,
-			0xd62f105d,
-			0x02441453,
-			0xd8a1e681,
-			0xe7d3fbc8,
-			0x21e1cde6,
-			0xc33707d6,
-			0xf4d50d87,
-			0x455a14ed,
-			0xa9e3e905,
-			0xfcefa3f8,
-			0x676f02d9,
-			0x8d2a4c8a,
-			0xfffa3942,
-			0x8771f681,
-			0x6d9d6122,
-			0xfde5380c,
-			0xa4beea44,
-			0x4bdecfa9,
-			0xf6bb4b60,
-			0xbebfbc70,
-			0x289b7ec6,
-			0xeaa127fa,
-			0xd4ef3085,
-			0x04881d05,
-			0xd9d4d039,
-			0xe6db99e5,
-			0x1fa27cf8,
-			0xc4ac5665,
-			0xf4292244,
-			0x432aff97,
-			0xab9423a7,
-			0xfc93a039,
-			0x655b59c3,
-			0x8f0ccc92,
-			0xffeff47d,
-			0x85845dd1,
-			0x6fa87e4f,
-			0xfe2ce6e0,
-			0xa3014314,
-			0x4e0811a1,
-			0xf7537e82,
-			0xbd3af235,
-			0x2ad7d2bb,
-			0xeb86d391,
+			0xd76aa478,0xe8c7b756,0x242070db,0xc1bdceee,0xf57c0faf,0x4787c62a,0xa8304613,0xfd469501,
+			0x698098d8,0x8b44f7af,0xffff5bb1,0x895cd7be,0x6b901122,0xfd987193,0xa679438e,0x49b40821,
+			0xf61e2562,0xc040b340,0x265e5a51,0xe9b6c7aa,0xd62f105d,0x02441453,0xd8a1e681,0xe7d3fbc8,
+			0x21e1cde6,0xc33707d6,0xf4d50d87,0x455a14ed,0xa9e3e905,0xfcefa3f8,0x676f02d9,0x8d2a4c8a,
+			0xfffa3942,0x8771f681,0x6d9d6122,0xfde5380c,0xa4beea44,0x4bdecfa9,0xf6bb4b60,0xbebfbc70,
+			0x289b7ec6,0xeaa127fa,0xd4ef3085,0x04881d05,0xd9d4d039,0xe6db99e5,0x1fa27cf8,0xc4ac5665,
+			0xf4292244,0x432aff97,0xab9423a7,0xfc93a039,0x655b59c3,0x8f0ccc92,0xffeff47d,0x85845dd1,
+			0x6fa87e4f,0xfe2ce6e0,0xa3014314,0x4e0811a1,0xf7537e82,0xbd3af235,0x2ad7d2bb,0xeb86d391,
 		}
 
 		local function add(a, b)
@@ -263,7 +199,7 @@ local function GenerateReservedServerCode(placeId)
 
 	local content = firstBytes .. placeIdBytes
 
-	local SUPERDUPERSECRETROBLOXKEYTHATTHEYDIDNTCHANGEEVERSINCEFOREVER = "e4Yn8ckbCJtw2sv7qmbg" -- legacy leaked key from ages ago that still works due to roblox being roblox.
+	local SUPERDUPERSECRETROBLOXKEYTHATTHEYDIDNTCHANGEEVERSINCEFOREVER = "e4Yn8ckbCJtw2sv7qmbg"
 	local signature = hmac.new(SUPERDUPERSECRETROBLOXKEYTHATTHEYDIDNTCHANGEEVERSINCEFOREVER, content, md5.sum)
 
 	local accessCodeBytes = signature .. content
@@ -284,43 +220,56 @@ end
 
 local accessCode, _ = GenerateReservedServerCode(game.PlaceId)
 game.RobloxReplicatedStorage.ContactListIrisInviteTeleport:FireServer(game.PlaceId, "", accessCode)
+setclipboard(accessCode)
 
---add setclipboard(accessCode) here
-
--- Toggle com nome do usuário e notificação de Discord
-
+-- UI Futurista com seu nome colorido
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
-
-local function showNotification()
-    StarterGui:SetCore("SendNotification", {
-        Title = "@Yay Cat",
-        Text = "Entre no meu Discord: discord.gg/SYEz83rKR4",
-        Duration = 10
-    })
-end
-
--- Cria um toggle fictício (não clicável) na tela
 local player = Players.LocalPlayer
+
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "YayCatToggleGui"
+ScreenGui.Name = "YayCatFuturisticUI"
 ScreenGui.Parent = player:WaitForChild("PlayerGui")
 
-local ToggleFrame = Instance.new("Frame")
-ToggleFrame.Size = UDim2.new(0, 200, 0, 50)
-ToggleFrame.Position = UDim2.new(0.5, -100, 0.1, 0)
-ToggleFrame.BackgroundColor3 = Color3.fromRGB(35, 40, 50)
-ToggleFrame.Parent = ScreenGui
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0, 240, 0, 60)
+Frame.Position = UDim2.new(0.5, -120, 0.08, 0)
+Frame.BackgroundColor3 = Color3.fromRGB(16,16,32)
+Frame.BorderSizePixel = 0
+Frame.Parent = ScreenGui
+
+local UIGradient = Instance.new("UIGradient")
+UIGradient.Color = ColorSequence.new{
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(0,255,255)), -- Neon azul
+	ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255,0,255)), -- Neon rosa
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(0,255,127)) -- Neon verde
+}
+UIGradient.Rotation = 45
+UIGradient.Parent = Frame
 
 local NameLabel = Instance.new("TextLabel")
 NameLabel.Size = UDim2.new(1, 0, 1, 0)
 NameLabel.Position = UDim2.new(0, 0, 0, 0)
 NameLabel.BackgroundTransparency = 1
 NameLabel.Text = "@Yay Cat"
-NameLabel.Font = Enum.Font.SourceSansBold
-NameLabel.TextSize = 24
-NameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-NameLabel.Parent = ToggleFrame
+NameLabel.Font = Enum.Font.Arcade -- Futurista, escolha alternativa: Enum.Font.GothamBlack
+NameLabel.TextSize = 36
+NameLabel.TextColor3 = Color3.fromRGB(255,255,255)
+NameLabel.TextStrokeTransparency = 0.5
+NameLabel.TextStrokeColor3 = Color3.fromRGB(0,255,255)
+NameLabel.Parent = Frame
 
--- Notifica ao entrar
-showNotification()
+local NameGradient = Instance.new("UIGradient")
+NameGradient.Color = ColorSequence.new{
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(0,255,255)),
+	ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255,0,255)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(0,255,127))
+}
+NameGradient.Parent = NameLabel
+
+-- Notificação de convite Discord
+StarterGui:SetCore("SendNotification", {
+	Title = "Entre no meu Discord!",
+	Text = "discord.gg/SYEz83rKR4",
+	Duration = 12
+})
